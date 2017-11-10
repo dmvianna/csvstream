@@ -38,8 +38,8 @@ import qualified Data.Vector as Vector
 
 data Item =
   Item
-  { itemId :: Text -- I'm being conservative for starters
-  , itemText :: Text -- No transformation yet
+  { itemId :: !Text -- I'm being conservative for starters
+  , itemText :: !Text -- No transformation yet
   }
   deriving (Eq, Show)
 
