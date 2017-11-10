@@ -6,11 +6,11 @@ module Main where
 -- base
 import Control.Exception (IOException)
 import qualified Control.Exception as Exception
-import Data.ByteString.Lazy (ByteString)
+import qualified Data.Foldable as Foldable
 
 -- bytestring
+import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as ByteString
-import qualified Data.Foldable as Foldable
 
 -- cassava
 import Data.Csv
@@ -23,7 +23,7 @@ import Data.Csv
   , (.:)
   , (.=)
   )
-import qualified Data.Csv.Streaming as Cassava
+import qualified Data.Csv as Cassava
 
 -- text
 import Data.Text (Text)
@@ -57,12 +57,12 @@ decodeItems
 decodeItems =
   fmap snd . Cassava.decodeByName
 
--- decodeItemsFromFile
---   :: FilePath
---   -> IO (Either String (Vector Item))
--- decodeItemsFromFile filePath =
---   catchShowIO (ByteString.readFile filePath)
---   >>= return . either Left decodeItems
+decodeItemsFromFile
+  :: FilePath
+  -> IO (Either String (Vector Item))
+decodeItemsFromFile filePath =
+  catchShowIO (ByteString.readFile filePath)
+  >>= return . either Left decodeItems
 
 catchShowIO
   :: IO a
