@@ -38,7 +38,7 @@ import qualified Data.Vector as Vector
 
 data Item =
   Item
-  { itemId :: !Text -- I'm being conservative for starters
+  { itemId :: !Integer -- I'm being conservative for starters
   , itemText :: !Text -- No transformation yet
   }
   deriving (Eq, Show)
@@ -47,7 +47,7 @@ instance FromNamedRecord Item where
   parseNamedRecord m =
     Item
     <$> m .: "AUSTRALIAN_APPL_NO"
-    <*> m .: "ABSTRACT_TEXT"
+    <*> fmap Text.decodeLatin1 (m .: "ABSTRACT_TEXT")
 
 -- file parsing
 
@@ -80,4 +80,7 @@ catchShowIO action =
 
 main :: IO ()
 main = do
-  putStrLn "Hello world"
+  csvData <- decodeItemsFromFile "../data/IPGOD.IPGOD122B_PAT_ABSTRACTS.csv"
+  let counted = fmap (Vector.foldr (\_ n -> n + 1)  0) csvData
+  putStrLn $ "Total rows: " ++ (show counted)
+
