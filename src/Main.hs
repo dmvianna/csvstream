@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# Language OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module Main where
@@ -23,16 +23,20 @@ import Data.Csv
   , (.:)
   , (.=)
   )
-import qualified Data.Csv as Cassava
+import qualified Data.Csv.Streaming as Cassava
+import Data.Csv.Streaming (Records)
 
 -- text
 import Data.Text (Text)
 import qualified Data.Text.Encoding as Text
 
 -- vector
+-- import Data.Vector (Vector)
+-- import qualified Data.Vector as Vector
 
-import Data.Vector (Vector)
-import qualified Data.Vector as Vector
+-- stream foldable
+import qualified Data.Foldable as F
+
 
 -- data definition
 
@@ -53,13 +57,13 @@ instance FromNamedRecord Item where
 
 decodeItems
   :: ByteString
-  -> Either String (Vector Item)
+  -> Either String (Records Item)
 decodeItems =
   fmap snd . Cassava.decodeByName
 
 decodeItemsFromFile
   :: FilePath
-  -> IO (Either String (Vector Item))
+  -> IO (Either String (Records Item))
 decodeItemsFromFile filePath =
   catchShowIO (ByteString.readFile filePath)
   >>= return . either Left decodeItems
@@ -81,6 +85,6 @@ catchShowIO action =
 main :: IO ()
 main = do
   csvData <- decodeItemsFromFile "../data/IPGOD.IPGOD122B_PAT_ABSTRACTS.csv"
-  let counted = fmap (Vector.foldr (\_ n -> n + 1)  0) csvData
+  let counted = fmap (F.foldr (\_ n -> n + 1)  0) csvData
   putStrLn $ "Total rows: " ++ (show counted)
 
