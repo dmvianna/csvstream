@@ -1,0 +1,25 @@
+name:                csvstream
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/dmvianna/csvstream#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Daniel Vianna
+maintainer:          dmvianna <<<at>>> gmail.com
+copyright:           2017 Daniel Vianna
+category:            Data
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable csvstream
+  main-is:             Main.hs
+  ghc-options:         -rtsopts -O2
+  build-depends:       base,
+                       bytestring,
+                       cassava,
+                       text,
+                       vector
+  hs-source-dirs:      src
+  default-language:    Haskell2010

@@ -1,0 +1,6 @@
+:set -XOverloadedStrings
+:set -XRecordWildCards
+
+import Control.Exception (IOException)
+import qualified Control.Exception as Exception
+import qualified Data.Foldable as Foldable
