@@ -6,36 +6,24 @@ module Main where
 -- base
 import Control.Exception (IOException)
 import qualified Control.Exception as Exception
-import qualified Data.Foldable as Foldable
 
 -- bytestring
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as ByteString
+import qualified Data.Foldable as F
 
 -- cassava
 import Data.Csv
-  ( DefaultOrdered(headerOrder)
-  , FromField(parseField)
-  , FromNamedRecord(parseNamedRecord)
-  , Header
-  , ToField(toField)
-  , ToNamedRecord(toNamedRecord)
+  (
+    FromNamedRecord(parseNamedRecord)
   , (.:)
-  , (.=)
   )
-import qualified Data.Csv.Streaming as Cassava
+import Data.Csv.Streaming (decodeByName)
 import Data.Csv.Streaming (Records)
 
 -- text
 import Data.Text (Text)
 import qualified Data.Text.Encoding as Text
-
--- vector
--- import Data.Vector (Vector)
--- import qualified Data.Vector as Vector
-
--- stream foldable
-import qualified Data.Foldable as F
 
 
 -- data definition
@@ -59,7 +47,7 @@ decodeItems
   :: ByteString
   -> Either String (Records Item)
 decodeItems =
-  fmap snd . Cassava.decodeByName
+  fmap snd . decodeByName
 
 decodeItemsFromFile
   :: FilePath
