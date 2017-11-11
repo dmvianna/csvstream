@@ -86,5 +86,8 @@ main :: IO ()
 main = do
   csvData <- decodeItemsFromFile "../data/IPGOD.IPGOD122B_PAT_ABSTRACTS.csv"
   let counted = fmap (F.foldr (\_ n -> n + 1)  0) csvData
-  putStrLn $ "Total rows: " ++ (show counted)
+  case counted of
+    Left e -> putStrLn e
+    Right n ->
+      putStrLn $ "total rows: " ++ (show n)
 
