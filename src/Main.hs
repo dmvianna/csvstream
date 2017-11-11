@@ -42,8 +42,8 @@ import qualified Data.Foldable as F
 
 data Item =
   Item
-  { itemId :: !Integer -- I'm being conservative for starters
-  , itemText :: !Text -- No transformation yet
+  { itemId :: Integer -- I'm being conservative for starters
+  , itemText :: Text -- No transformation yet
   }
   deriving (Eq, Show)
 
