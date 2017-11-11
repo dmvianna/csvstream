@@ -20,10 +20,11 @@ GROUP BY
 
 ### At some point
 
-Encoding results back into an output file.
+- Encoding results back into an output file.
+- Indexing / examining data
 
 ## Proposed libraries
 
-There are good tutorials for [cassava](https://hackage.haskell.org/package/cassava) by [Chris Allen](http://howistart.org/posts/haskell/1/) and [stackbuilders](https://www.stackbuilders.com/tutorials/haskell/csv-encoding-decoding/). I worked through these, in that order. So I'll retrace their steps with this new dataset as a starting point. Next, I may move on to [conduit](https://github.com/snoyberg/conduit#readme) because the syntax seems good and I read [some comments](https://www.yesodweb.com/blog/2013/10/core-flaw-pipes-conduit) suggesting it is more resilient to ugly data than [pipes](http://hackage.haskell.org/package/pipes). Yes, the blog post is old and written by the author of `conduit`. Whatever. Correct me if I'm wrong or desperately outdated.
+There are good tutorials for [cassava](https://hackage.haskell.org/package/cassava) by [Chris Allen](http://howistart.org/posts/haskell/1/) and [stackbuilders](https://www.stackbuilders.com/tutorials/haskell/csv-encoding-decoding/). I worked through these, in that order. So I'll retrace their steps with this new dataset as a starting point. Next, I may move on to [conduit](https://github.com/snoyberg/conduit#readme) because the syntax seems good and I read [some comments](https://www.yesodweb.com/blog/2013/10/core-flaw-pipes-conduit) suggesting it is more resilient to ugly data than [pipes](http://hackage.haskell.org/package/pipes). Or [machines](http://statusfailed.com/blog/2014/09/02/practical-machines-in-60-seconds.html). Or [streaming](https://hackage.haskell.org/package/streaming)...
 
 Finally, I eagerly welcome help to move this forward. Get in touch!
